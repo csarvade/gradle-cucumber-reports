@@ -1,20 +1,28 @@
-build:
-  image: openjdk:8u171-jdk-alpine
-  steps:
-  - chmod +x gradlew
-  - ./gradlew clean build -x test --stacktrace
+pipeline{
+agent any
+stages{
+stage('Compile'){
+steps{
+       sh 'gradle clean'
+}
+}
+stage('Build'){
+steps{
+       sh 'gradle build'
+}
+}
+stage('Test'){
+steps{
+       sh 'gradle test'
+}
+}
+stage('Cucumber Reports'){
+steps{
+      cucumber buildStatus: "UNSTABLE",
+         fileIncludePattern: "**/example-report.json"
+         jsonReportDirectory: 'target'
+}
+}
+}
 
-containerBuild:
-  imageName: gradle-cucumber-reports
-
-deployment:
-  name: gradle-cucumber-reports
-  namespace: gradle-cucumber-reports
-  cpu: 100m
-  memory: 2Gi
-  replicas: 1
-  containerPort: 8080
-
-environments:
-  dev:
-    branch: integration/.*
+}
