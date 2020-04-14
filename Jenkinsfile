@@ -20,7 +20,7 @@ stage('Cucumber Reports'){
 steps{
       cucumber buildStatus: "UNSTABLE",
          fileIncludePattern: "**/example-report.json"
-         jsonReportDirectory: 'target'
+         jsonReportDirectory: '/'
 }
 }
 }
