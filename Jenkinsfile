@@ -18,7 +18,7 @@ steps{
 }
 stage('Cucumber Reports'){
 steps{
-       cucumber fileIncludePattern: '**/gradle-cucumber-reports/example/reports/example-report.json', sortingMethod: 'ALPHABETICAL'
+      echo "yet to config"
          
 }
 }
