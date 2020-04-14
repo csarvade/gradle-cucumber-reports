@@ -69,6 +69,11 @@ task functionalTest(type: Test) {
         testLogging.showStandardStreams = true
     }
     mustRunAfter test
+  cucumberReports {
+  outputDir = file('**/target/Destination/')
+  buildId = '0'
+  reports = files('**/gradle-cucumber-reports/example/reports/example-report.json', '**/gradle-cucumber-reports/example/reports/trends.json')
+}
 }
 
 test.finalizedBy functionalTest
