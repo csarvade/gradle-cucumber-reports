@@ -1,0 +1,9 @@
+FROM openjdk:8u171-jre-alpine
+
+WORKDIR /app
+
+COPY build/libs/gradle-cucumber-reports-0.0.1-SNAPSHOT.jar .
+
+RUN sed -i -e 's/^root::/root:!:/' /etc/shadow
+
+ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-XX:MaxRAMFraction=2", "-jar", "gradle-cucumber-reports-0.0.1-SNAPSHOT.jar"]
