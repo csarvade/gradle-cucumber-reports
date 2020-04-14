@@ -18,7 +18,7 @@ steps{
 }
 stage('Cucumber Reports'){
 steps{
-       cucumber fileIncludePattern: '**/example-report.json', sortingMethod: 'ALPHABETICAL'
+       cucumber fileIncludePattern: '**/gradle-cucumber-reports/example/reports/example-report.json', sortingMethod: 'ALPHABETICAL'
          
 }
 }
