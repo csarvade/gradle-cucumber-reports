@@ -1,0 +1,20 @@
+build:
+  image: openjdk:8u171-jdk-alpine
+  steps:
+  - chmod +x gradlew
+  - ./gradlew clean build -x test --stacktrace
+
+containerBuild:
+  imageName: gradle-cucumber-reports
+
+deployment:
+  name: gradle-cucumber-reports
+  namespace: gradle-cucumber-reports
+  cpu: 100m
+  memory: 2Gi
+  replicas: 1
+  containerPort: 8080
+
+environments:
+  dev:
+    branch: integration/.*
