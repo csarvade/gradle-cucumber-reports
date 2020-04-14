@@ -18,8 +18,7 @@ steps{
 }
 stage('Cucumber Reports'){
 steps{
-      cucumber buildStatus: "UNSTABLE",
-         fileIncludePattern: "**/example-report.json"
+       cucumber fileIncludePattern: '**/example-report.json', sortingMethod: 'ALPHABETICAL'
          
 }
 }
